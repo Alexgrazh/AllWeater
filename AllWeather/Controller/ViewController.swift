@@ -7,12 +7,16 @@
 import Alamofire
 import CoreLocation
 import RealmSwift
+
 import UIKit
 
 class ViewController: UIViewController {
     
-    //MARK: - IBOutlet
+    let dbManeger: RealmManeger = DBWeather()
+    
     var arryaWeek : [List] = []
+    
+    //MARK: - IBOutlet
     @IBOutlet private var postImage: UIImageView!
     
     @IBOutlet weak var nameRegoin: UILabel!
@@ -25,12 +29,16 @@ class ViewController: UIViewController {
     @IBOutlet weak var precipitation: UILabel!
     @IBOutlet weak var wind: UILabel!
     
+    var condition = ""
+
+    var currenW = 1
+    var max = 5
     @IBOutlet weak var contantView: UIView!
     
     @IBOutlet private var collectonView : UICollectionView!
     
-    private var realm = try? Realm()
-    private var arrayCureentWeater : [SaveWeather] = []
+    private var mainRealm = try? Realm()
+    private var arrayCurrentWeater : [SaveWeather] = []
     
     
     
@@ -39,16 +47,38 @@ class ViewController: UIViewController {
         
         requestWeatehrForLocation(lat: 51.5074, lon: -0.1278)
         setupView()
-
+//
         //Register Cell
         collectonView.dataSource = self
         let WeatherCollectionViewCellNib = UINib(nibName: "WeatherCollectionViewCell", bundle: nil)
         collectonView.register(WeatherCollectionViewCellNib, forCellWithReuseIdentifier: "WeatherCollectionViewCell")
+        weatherCondition.text = condition
+        currentWeather.text = "\(Int(currenW))"
+        tempMax.text = "\(Int(max))"
+        
+        let modal = SaveWeather()
+        modal.weatherCondition = condition
+        modal.currentWeather = currenW
+        modal.tempMax = max
+        dbManeger.save(present: modal)
+    
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        
+//        let modals = dbManeger.obtainWeather()
+        guard let modals = mainRealm?.objects(SaveWeather.self) else {return}
+        for weather in modals {
+            self.arrayCurrentWeater.append(weather)
+        }
+        print("\(modals)")
+        
+//        if let lastModal = modals.last {
+//            dbManeger.delete(object:lastModal)
+//        }
+       
         
 //        self.arrayCureentWeater = []
 //
@@ -57,6 +87,13 @@ class ViewController: UIViewController {
 //        for weater in infoMWeathers {
 //            self.arrayCureentWeater.append(weater)
 //        }
+    }
+    
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+//        let modals = dbManeger.obtainWeather()
+//        print("\(modals)")
     }
     
 //    func saveWeathers(weater: SaveWeather){
@@ -111,7 +148,7 @@ class ViewController: UIViewController {
         AF.request(url).responseJSON { response in
             guard let responseData = response.data else {return}
             let dataString = String(data: responseData, encoding: .utf8) ?? ""
-            print(dataString)
+//            print(dataString)
             do {
                 let data = try JSONDecoder().decode(WeatherResponse.self, from: response.data!)
                 

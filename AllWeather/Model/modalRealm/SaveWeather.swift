@@ -9,11 +9,11 @@ import Foundation
 import RealmSwift
 
 class SaveWeather : Object {
-    @Persisted(primaryKey: true) var weatherCondition : String?
+    @Persisted var weatherCondition : String?
     @Persisted var currentWeather : Int
     @Persisted var tempMax : Int
-    @Persisted var humidity : Int
-    @Persisted var precipitation : Int
-    @Persisted var wind : Int
+//    @Persisted var humidity : Int
+//    @Persisted var precipitation : Int
+//    @Persisted var wind : Int
  
 }
