@@ -18,23 +18,26 @@ class ViewController: UIViewController {
     
     //MARK: - IBOutlet
     @IBOutlet private var postImage: UIImageView!
-    
     @IBOutlet weak var nameRegoin: UILabel!
     @IBOutlet weak var weatherCondition: UILabel!
     @IBOutlet weak var currentWeather: UILabel!
-    
     @IBOutlet weak var dataLabel: UILabel!
     @IBOutlet weak var tempMax: UILabel!
     @IBOutlet weak var humidity: UILabel!
     @IBOutlet weak var precipitation: UILabel!
     @IBOutlet weak var wind: UILabel!
     
+    
     var condition = ""
-
     var currenW = 1
     var max = 5
-    @IBOutlet weak var contantView: UIView!
+    var timer: Timer!
     
+//Progress View
+    @IBOutlet weak var labelProgress: UILabel!
+    @IBOutlet weak var progressView: UIProgressView!
+    
+    @IBOutlet weak var contantView: UIView!
     @IBOutlet private var collectonView : UICollectionView!
     
     private var mainRealm = try? Realm()
@@ -61,78 +64,41 @@ class ViewController: UIViewController {
         modal.currentWeather = currenW
         modal.tempMax = max
         dbManeger.save(present: modal)
-    
+        
+        DispatchQueue.main.async {
+            self.timer = Timer.scheduledTimer(timeInterval: 0.4, target: self, selector: #selector(self.updateWeather), userInfo: nil, repeats: true)
+            self.progressView.setProgress(0.4, animated: true)
+        }
+   
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        
-//        let modals = dbManeger.obtainWeather()
         guard let modals = mainRealm?.objects(SaveWeather.self) else {return}
         for weather in modals {
             self.arrayCurrentWeater.append(weather)
         }
         print("\(modals)")
-        
-//        if let lastModal = modals.last {
-//            dbManeger.delete(object:lastModal)
-//        }
-       
-        
-//        self.arrayCureentWeater = []
-//
-//        guard let infoMWeathers = realm?.objects(SaveWeather.self) else {return}
-//
-//        for weater in infoMWeathers {
-//            self.arrayCureentWeater.append(weater)
-//        }
     }
     
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-//        let modals = dbManeger.obtainWeather()
-//        print("\(modals)")
+    @objc func updateWeather(){
+        if progressView.progress != 1 {
+            progressView.progress += 3 / 10
+         
+        } else {
+            self.labelProgress.isHidden = true
+            self.progressView.isHidden = true
+        }
     }
     
-//    func saveWeathers(weater: SaveWeather){
-//
-//        let arrayCureentWeater = SaveWeather()
-//        arrayCureentWeater.currentWeather = weater.currentWeather
-//        arrayCureentWeater.weatherCondition = weater.weatherCondition
-//        arrayCureentWeater.tempMax = weater.tempMax
-//        arrayCureentWeater.humidity = weater.humidity
-//        arrayCureentWeater.precipitation = weater.precipitation
-//        arrayCureentWeater.wind = weater.wind
-//
-//        try? realm?.write {
-//            realm?.add(arrayCureentWeater, update: .all)
-//        }
-//
-//    }
-//
-//
-//
-//    func deleteIfExists(weatherData: SaveWeather) {
-//        if let existingData = realm?.object(ofType: SaveWeather.self, forPrimaryKey: weatherData.weatherCondition) {
-//              do {
-//                  try realm?.write {
-//                      realm?.delete(existingData)
-//                      print("Дані погоди успішно видалені")
-//                  }
-//              } catch {
-//                  print("Помилка при видаленні даних погоди: \(error.localizedDescription)")
-//              }
-//          } else {
-//              print("Дані погоди відсутні в базі даних")
-//          }
-//      }
-    
-   
+
     func setupView(){
         contantView.layer.cornerRadius = 20
     }
+    
+    
     func requestWeatehrForLocation(lat: Double, lon: Double){
         
         //        guard let currentLocation = currentLocation else {

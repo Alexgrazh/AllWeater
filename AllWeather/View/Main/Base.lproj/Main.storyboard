@@ -24,7 +24,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sHv-fG-ynn">
-                                <rect key="frame" x="56" y="85" width="281" height="29"/>
+                                <rect key="frame" x="56" y="92" width="281" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="29" id="c55-n0-gVN"/>
                                 </constraints>
@@ -184,24 +184,47 @@
                                     <constraint firstItem="Bhl-Bh-DnU" firstAttribute="bottom" secondItem="aLl-bM-ubu" secondAttribute="bottom" id="whI-7j-Za9"/>
                                 </constraints>
                             </view>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="bRE-aI-mgV">
+                                <rect key="frame" x="16" y="59" width="361" height="4"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="4" id="NEe-yf-f54"/>
+                                </constraints>
+                                <color key="progressTintColor" red="0.80392447050000004" green="0.80392447050000004" blue="0.80392447050000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="trackTintColor" red="0.1843137255" green="0.1843137255" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </progressView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loadind..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jqy-fs-TE3">
+                                <rect key="frame" x="137" y="59" width="120" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="17" id="ol3-Sv-FpK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" red="0.0451778844" green="0.05013920367" blue="0.16471651200000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="0.10980392160000001" green="0.10584232960000001" blue="0.2196193337" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="PoJ-3B-nfE" firstAttribute="top" secondItem="PD7-Bc-Vkd" secondAttribute="bottom" constant="8" symbolic="YES" id="7BO-e4-KHH"/>
-                            <constraint firstItem="sHv-fG-ynn" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="26" id="D2t-wV-Nuk"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Y4R-fC-6g1" secondAttribute="bottom" constant="108" id="E8T-MV-Kgk"/>
+                            <constraint firstItem="jqy-fs-TE3" firstAttribute="top" secondItem="bRE-aI-mgV" secondAttribute="bottom" constant="-4" id="G7i-hc-3I1"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="bRE-aI-mgV" secondAttribute="trailing" constant="16" id="LEc-Ej-EaF"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="sHv-fG-ynn" secondAttribute="trailing" constant="56" id="Mjv-jE-j36"/>
                             <constraint firstItem="PD7-Bc-Vkd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="121" id="Mtf-Ck-izI"/>
+                            <constraint firstItem="bRE-aI-mgV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Ogg-pN-Csw"/>
                             <constraint firstItem="lLu-ec-RuC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="94" id="P7e-2l-tJC"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="PD7-Bc-Vkd" secondAttribute="trailing" constant="122" id="RGr-ac-mvD"/>
                             <constraint firstItem="PoJ-3B-nfE" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="SgM-Hg-zww"/>
                             <constraint firstItem="lLu-ec-RuC" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="82" id="TLg-eR-9q8"/>
                             <constraint firstItem="Y4R-fC-6g1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="4" id="W2b-mf-aN7"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Y4R-fC-6g1" secondAttribute="trailing" constant="4" id="cHj-Cw-Q8c"/>
+                            <constraint firstItem="sHv-fG-ynn" firstAttribute="top" secondItem="jqy-fs-TE3" secondAttribute="bottom" constant="16" id="ca9-Jb-uZC"/>
+                            <constraint firstItem="jqy-fs-TE3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="137" id="d2O-W5-ocS"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="PoJ-3B-nfE" secondAttribute="trailing" constant="16" id="eqY-4H-NnJ"/>
                             <constraint firstItem="PD7-Bc-Vkd" firstAttribute="top" secondItem="lLu-ec-RuC" secondAttribute="bottom" constant="8" symbolic="YES" id="kTK-Tz-M9V"/>
                             <constraint firstItem="sHv-fG-ynn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="56" id="lun-HB-hNp"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="jqy-fs-TE3" secondAttribute="trailing" constant="136" id="ntI-Op-Pdz"/>
+                            <constraint firstItem="bRE-aI-mgV" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="pdk-9f-nXx"/>
                         </constraints>
                     </view>
                     <connections>
@@ -210,9 +233,11 @@
                         <outlet property="currentWeather" destination="eOF-yt-aTp" id="zk9-ao-6EA"/>
                         <outlet property="dataLabel" destination="BI9-Jz-kAN" id="hmL-O1-V2Z"/>
                         <outlet property="humidity" destination="hV1-UT-fGp" id="PCs-W6-L8J"/>
+                        <outlet property="labelProgress" destination="jqy-fs-TE3" id="hwZ-H0-hJZ"/>
                         <outlet property="nameRegoin" destination="sHv-fG-ynn" id="59w-4K-Sst"/>
                         <outlet property="postImage" destination="lLu-ec-RuC" id="KbX-DS-DH7"/>
                         <outlet property="precipitation" destination="UmH-M3-1Wz" id="opR-qQ-6wE"/>
+                        <outlet property="progressView" destination="bRE-aI-mgV" id="FZP-6d-sag"/>
                         <outlet property="tempMax" destination="gOe-Eq-ESX" id="0tZ-VT-h7M"/>
                         <outlet property="weatherCondition" destination="PD7-Bc-Vkd" id="n1B-Uk-myK"/>
                         <outlet property="wind" destination="xDA-OE-lEE" id="khr-nX-vSX"/>
